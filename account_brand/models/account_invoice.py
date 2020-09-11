@@ -10,7 +10,6 @@ class AccountInvoice(models.Model):
 
     brand_id = fields.Many2one(
         states={
-            'open': [('readonly', True)],
             'in_payment': [('readonly', True)],
             'paid': [('readonly', True)],
             'cancel': [('readonly', True)],
