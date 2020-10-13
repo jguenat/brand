@@ -9,7 +9,7 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="brand_name" attrs="{'readonly':[('state','not in','draft'),('state','not in','open')]}"/>
+                <field name="brand_name" attrs="{'readonly':[('state','not in','draft')]}"/>
                 <field name="brand_id" invisible="True"/>
             </field>
         </field>

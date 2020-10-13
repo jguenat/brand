@@ -24,6 +24,7 @@ class AccountInvoice(models.Model):
     @api.onchange('brand_name')
     def _onchange_brand_name(self):
         self.brand_id = self.brand_name.brand
+        self.partner_bank_id = self.brand_name.bank
 
 
     @api.multi
@@ -39,6 +40,7 @@ class AccountInvoice(models.Model):
         values = super(AccountInvoice, self)._prepare_refund(
             invoice, date_invoice=date_invoice, date=date,
             description=description, journal_id=journal_id)
-        if invoice.brand_id:
+        if invoice.brand_id and invoice.brand_name:
             values['brand_id'] = invoice.brand_id.id
+            values['brand_name'] = invoice.brand_name.id
         return values

@@ -19,9 +19,6 @@ class ResBrand(models.Model):
         ondelete="restrict",
     )
 
-    brandname = fields.Char(
-        string="Nom du template"
-    )
 
 class ResBrandName(models.Model):
 
@@ -34,5 +31,10 @@ class ResBrandName(models.Model):
     brand = fields.Many2one(
         comodel_name="res.brand",
         string="brand",
+        required=True,
+    )
+    bank = fields.Many2one(
+        comodel_name="res.partner.bank",
+        string="Compte bancaire",
         required=True,
     )
