@@ -38,3 +38,9 @@ class ResBrandName(models.Model):
         string="Compte bancaire",
         required=True,
     )
+    # Multi-company behaviour
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        string='Société',
+        default=lambda self: self.env['res.company']._company_default_get('res.brand.name')
+    )
