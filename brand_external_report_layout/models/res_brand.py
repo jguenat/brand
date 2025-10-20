@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
-import os
 
 from odoo import _, api, fields, models, tools
 
@@ -10,24 +9,8 @@ from odoo import _, api, fields, models, tools
 class ResBrand(models.Model):
     _inherit = "res.brand"
 
-    def _get_default_brand_logo(self):
-        return base64.b64encode(
-            open(
-                os.path.join(
-                    tools.config["root_path"],
-                    "addons",
-                    "base",
-                    "static",
-                    "img",
-                    "res_company_logo.png",
-                ),
-                "rb",
-            ).read()
-        )
-
     logo = fields.Binary(
         related="partner_id.image_1920",
-        default=_get_default_brand_logo,
         string="Brand Logo",
         readonly=False,
     )

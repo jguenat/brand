@@ -30,9 +30,6 @@ class TestBrandExternalReportLayout(TransactionCase):
             {"name": "Test Paperformat"}
         )
 
-    def test_get_default_brand_logo(self):
-        self.assertEqual(self.brand.logo, self.brand._get_default_brand_logo())
-
     def test_brand_document_layout_onchange_brand_id(self):
         wizard = self.env["brand.document.layout"].create({"brand_id": self.brand.id})
 
@@ -50,37 +47,6 @@ class TestBrandExternalReportLayout(TransactionCase):
         self.assertEqual(
             wizard.report_layout_id.view_id, self.brand.external_report_layout_id
         )
-
-        self.brand.primary_color = False
-        self.brand.secondary_color = False
-        self.env.invalidate_all()
-        wizard._onchange_brand_id()
-        # Get the expected colors from the logo
-        expected_primary, expected_secondary = (
-            wizard.extract_image_primary_secondary_colors(wizard.logo)
-        )
-        self.assertEqual(wizard.primary_color, expected_primary)
-        self.assertEqual(wizard.secondary_color, expected_secondary)
-
-        module_path = os.path.dirname(os.path.abspath(__file__))
-        image_path = os.path.join(
-            module_path, "..", "static", "description", "icon.png"
-        )
-        with open(image_path, "rb") as image_file:
-            base64.b64encode(image_file.read())
-
-        self.brand.primary_color = False
-        self.brand.secondary_color = False
-        self.env["res.brand"].invalidate_recordset()
-        wizard._onchange_brand_id()
-
-        # Extract colors from the logo
-        expected_primary, expected_secondary = (
-            wizard.extract_image_primary_secondary_colors(wizard.logo)
-        )
-
-        self.assertEqual(wizard.primary_color, expected_primary)
-        self.assertEqual(wizard.secondary_color, expected_secondary)
 
     def test_brand_document_layout_onchange_logo(self):
         wizard = self.env["brand.document.layout"].create({"brand_id": self.brand.id})
