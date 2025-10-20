@@ -91,12 +91,12 @@ Authors
 Contributors
 ------------
 
--  Souheil Bejaoui <souheil.bejaoui@acsone.eu>
--  `Landoo, Sistemas de Información, S.L. <https://www.landoo.es>`__:
+- Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+- `Landoo, Sistemas de Información, S.L. <https://www.landoo.es>`__:
 
-   -  Vicent Cubells <vicent@vcubells.net>
+  - Vicent Cubells <vicent@vcubells.net>
 
--  Freni Patel <fpatel@opensourceintegrators.com>
+- Freni Patel <fpatel@opensourceintegrators.com>
 
 Maintainers
 -----------
